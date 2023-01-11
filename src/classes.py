@@ -16,4 +16,8 @@ class File:
         self.format
         self.dateAdded
         self.dateModified
+        self.duration
         return (self)
+
+    def setValues(self):
+        pass
