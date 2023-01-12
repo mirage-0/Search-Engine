@@ -1,9 +1,18 @@
 class Directory:
     def __init__(self, **args):
+        self.valueList  # = list of values from args
+        self.dictionary = self.generateDictionary(self.valueList)
         self.parent
         self.children
         self.directory
         return (self)
+
+    def generateDictionary(self):
+        return dict(self.generateKeys(self.valueList), self.valueList)
+
+    def generateKeys(self, valueList):
+        # write a function to create encoded list of keys and return them
+        pass
 
 
 class File:
