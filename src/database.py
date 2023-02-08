@@ -34,11 +34,14 @@ def func(a):
                 # list.append(x.stem)
                 # write(x, 0)
                 func(x)
+        else:
+            nameList.append(a)
     except PermissionError as e:
         pass
 
 
-searchCount = 200
+searchCount = 1
+numTest = 1
 x = pathlib.Path(r'C:\Users').parent
 print('Path- ', x)
 print('search Count -', searchCount)
@@ -90,8 +93,8 @@ print('build diff - ', buildFinish-buildStart)
 print('Beginning search...', time.time())
 flag = True
 
-temp = 0
-lis = []
+# temp = 0
+# lis = []
 # for j in testDict.keys():
 #     # print((int(j/100) not in lis), lis,  '!!!!!!')
 #     if int(j/100) not in lis:
@@ -129,24 +132,28 @@ def score(z):
 def searchFunction(search):
     z = 0
     j = True
+    resultList = []
     while j:
         try:
             a = testDict[score(search)+z]
-            if a.stem == search:
+            if str(a.stem).lower() == search.lower():
                 # print(testDict[score(search)+z])
                 # print(a)
                 j = False
+                return str(a)
             else:
                 z += 1
+                resultList.append(a)
         except KeyError:
             pass
+    return (resultList)
 
 
 flag2 = True
 avgTime = []
 startTime = time.time()
 # print(time.time(), 'START -------------------####################')
-for n in range(100):
+for n in range(numTest):
     sTime = time.time()
     for l in range(searchCount):
         s = nameList[random.randint(0, len(nameList)-1)]
@@ -162,13 +169,25 @@ for n in range(100):
 # if i == '':
 #     flag2 = False
 finishTime = time.time()
-print('Search Start - ', startTime)
-print('Search Finish -', finishTime)
-print('Search Time taken - ', finishTime-startTime)
-print('buildStart - ', buildStart)
-print('buildFinish- ', buildFinish)
-print('build diff - ', buildFinish-buildStart)
-print(sum(avgTime)/len(avgTime))
+print('Time to build database - ', buildFinish-buildStart)
+# print('Search Start - ', startTime)
+# print('Search Finish -', finishTime)
+print('Time to finish search - ', finishTime-startTime)
+# print('buildStart - ', buildStart)
+# print('buildFinish- ', buildFinish)
 
+print('avg time for search - ', sum(avgTime)/len(avgTime))
+
+print('enter file name to search')
+
+# for x in nameList:
+#     print(x)
+# print(userInput in nameList)
+while True:
+    print('Enter file name -')
+    userInput = input()
+    result = searchFunction(userInput)
+    print(result)
+    print('Press ctrl + c to exit')
 
 # searchFunction()
