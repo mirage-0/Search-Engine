@@ -1,2 +1,10 @@
 examples/__pycache__/threading.cpython-310.pyc
 src/__pycache__/databasetest.cpython-310.pyc
+convert.txt
+.vscode/launch.json
+examples/dict.py
+examples/test.py
+examples/threading.py
+examples/
+examples/class example.py
+
